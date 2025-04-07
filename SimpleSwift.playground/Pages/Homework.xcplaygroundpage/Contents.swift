@@ -1,6 +1,7 @@
 //: # Welcome to the UW Calculator Playground (Simple Version)
 //:
 print("Welcome to the UW Calculator Playground")
+import Foundation
 //: This homework is designed to force you to exercise your knowledge of the Swift programming language. This homework does not involve iOS in any way. It uses the Playground feature of XCode to allow you to interactively write Swift code--the compiler will constantly check your code in the background.
 //:
 //: In this exercise, you will implement a pair of functions that do some simple mathematical calculations.
@@ -33,7 +34,7 @@ func calculate(_ args: [String]) -> Int {
     }
     
     else if(args[1] == "+") {
-        let intA = Int(args[0])! //! is force unwrap for when a String is certain to convert to an int
+        let intA = Int(args[0])! //"!" is force unwrap for when a String is certain to convert to an int
         let intB = Int(args[2])!
         return intA + intB
     }
@@ -89,14 +90,74 @@ func calculate(_ args: [String]) -> Int {
                 Count -= 1
             }
             return intFact
-            
-
         }
     }
     return -1
 }
 
 func calculate(_ arg: String) -> Int {
+    
+    let stringArray = arg.components(separatedBy: " ")
+
+    if (stringArray.last == "count") {
+        return stringArray.count - 1
+    }
+    
+    else if (stringArray.last == "avg") {
+        var total = 0
+        var index = 0
+        while (index < stringArray.count - 1) {
+            var num = Int(stringArray[index])!
+            total = total + num
+            index += 1
+        }
+        return total / index
+    }
+    
+    else if (stringArray.last == "fact") {
+        var intFact = Int(stringArray[0])!
+        var Count = Int(stringArray[0])!
+        while (Count > 1) {
+            intFact = intFact * (Count - 1)
+            Count -= 1
+        }
+        return intFact
+    }
+    
+    if (stringArray.count == 1) {
+        return 0
+    }
+    
+    else if(stringArray[1] == "+") {
+        let intA = Int(stringArray[0])! //"!" is force unwrap for when a String is certain to convert to an int
+        let intB = Int(stringArray[2])!
+        return intA + intB
+    }
+    
+    else if(stringArray[1] == "-") {
+        let intA = Int(stringArray[0])!
+        let intB = Int(stringArray[2])!
+        return intA - intB
+    }
+    
+    else if(stringArray[1] == "*") {
+        let intA = Int(stringArray[0])!
+        let intB = Int(stringArray[2])!
+        return intA * intB
+    }
+    
+    else if(stringArray[1] == "/") {
+        let intA = Int(stringArray[0])!
+        let intB = Int(stringArray[2])!
+        return intA / intB
+    }
+    
+    else if(stringArray[1] == "%") {
+        let intA = Int(stringArray[0])!
+        let intB = Int(stringArray[2])!
+        return intA % intB
+    }
+    
     return -1
 }
 
