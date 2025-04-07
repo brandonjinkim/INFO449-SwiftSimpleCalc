@@ -27,6 +27,72 @@ print("Welcome to the UW Calculator Playground")
 //: For this latter set of operations, it is safe to assume that `["count"]` (with no additional arguments) is 0, `["avg"]` is also 0, and `["fact"]` is 0. `["1", "fact"]` should return 1, and `["0", "fact"]` should also return 1. (Yes, 0-factorial is 1. True story.)
 //: 
 func calculate(_ args: [String]) -> Int {
+    
+    if (args.count == 1) {
+        return 0
+    }
+    
+    else if(args[1] == "+") {
+        let intA = Int(args[0])! //! is force unwrap for when a String is certain to convert to an int
+        let intB = Int(args[2])!
+        return intA + intB
+    }
+    
+    else if(args[1] == "-") {
+        let intA = Int(args[0])!
+        let intB = Int(args[2])!
+        return intA - intB
+    }
+    
+    else if(args[1] == "*") {
+        let intA = Int(args[0])!
+        let intB = Int(args[2])!
+        return intA * intB
+    }
+    
+    else if(args[1] == "/") {
+        let intA = Int(args[0])!
+        let intB = Int(args[2])!
+        return intA / intB
+    }
+    
+    else if(args[1] == "%") {
+        let intA = Int(args[0])!
+        let intB = Int(args[2])!
+        return intA % intB
+    }
+    
+    else if (args.last == "count") {
+        return args.count - 1
+    }
+    
+    else if (args.last == "avg") {
+        var total = 0
+        var index = 0
+        while (index < args.count - 1) {
+            var num = Int(args[index])!
+            total = total + num
+            index += 1
+        }
+        return total / index
+    }
+    
+    else if (args.last == "fact") {
+        if (args.first == "0" || args.first == "1") {
+            return 1;
+        }
+        else {
+            var intFact = Int(args[0])!
+            var Count = Int(args[0])!
+            while (Count > 1) {
+                intFact = intFact * (Count - 1)
+                Count -= 1
+            }
+            return intFact
+            
+
+        }
+    }
     return -1
 }
 
